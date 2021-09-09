@@ -32,6 +32,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+@import "../styles/components/_reservation-card.scss";
 </style>

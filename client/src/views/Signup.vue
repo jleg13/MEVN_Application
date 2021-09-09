@@ -15,4 +15,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "../styles/views/_signup.scss";
+</style>
+

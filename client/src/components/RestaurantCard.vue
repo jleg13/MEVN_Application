@@ -18,6 +18,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+@import "../styles/components/_restaurant-card.scss";
 </style>

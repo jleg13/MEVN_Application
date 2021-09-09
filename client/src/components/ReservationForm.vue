@@ -98,4 +98,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "../styles/components/_reservation-form.scss";
+</style>

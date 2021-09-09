@@ -30,8 +30,10 @@
 
 <script>
 export default {
-  name: "NotificationModal",
+  name: "Notification",
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "../styles/components/_notification.scss";
+</style>

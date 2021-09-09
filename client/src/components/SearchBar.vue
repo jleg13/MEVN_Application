@@ -62,4 +62,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "../styles/components/_search-bar.scss";
+</style>

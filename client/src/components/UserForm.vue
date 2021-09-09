@@ -51,4 +51,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "../styles/components/_user-form.scss";
+</style>

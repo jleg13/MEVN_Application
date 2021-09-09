@@ -13,24 +13,27 @@
       <div class="graph">
         <Graph />
       </div>
-      <DeleteReservationModal />
-
+      <Modal />
+    </div>
   </section>
 </template>
 
 <script>
 import { Graph } from "@/components/Graph.vue";
 import { ReservationCard } from "@/components/ReservationCard.vue";
-import { DeleteReservationModal } from "@/components/DeleteReservationModal.vue";
+import { Modal } from "@/components/Modal.vue";
 
 export default {
   name: "Reservations",
   components: {
     Graph,
     ReservationCard,
-    DeleteReservationModal,
+    Modal,
   },
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "../styles/views/_reservations.scss";
+</style>
+

@@ -2,7 +2,7 @@
   <div id="app">
     <Header />
     <router-view></router-view>
-    <NotificationModal />
+    <Notification />
     <Footer />
   </div>
 </template>
@@ -10,14 +10,14 @@
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import NotificationModal from "@/components/NotificationModal.vue";
+import Notification from "@/components/Notification.vue";
 
 export default {
   name: "App",
   components: {
     Header,
     Footer,
-    NotificationModal
+    Notification,
   }
 };
 </script>

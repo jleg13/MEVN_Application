@@ -35,8 +35,10 @@
 
 <script>
 export default {
-  name: "DeleteReservationModal",
+  name: "Modal",
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "../styles/components/_modal.scss";
+</style>

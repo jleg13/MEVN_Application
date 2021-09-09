@@ -8,4 +8,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@import "../styles/components/_graph.scss";
+</style>
