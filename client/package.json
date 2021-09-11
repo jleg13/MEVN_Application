@@ -10,13 +10,20 @@
     "test:e2e": "nightwatch tests/e2e/"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^3.0.0-4",
     "bootstrap": "^5.1.0",
     "core-js": "^3.6.5",
+    "include-media": "^1.4.10",
     "vue": "^3.0.0",
+    "vue-ionicons": "^3.0.5",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@beyonk/google-fonts-webpack-plugin": "^1.7.0",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
@@ -29,7 +36,7 @@
     "geckodriver": "^2.0.1",
     "jest": "^27.0.6",
     "nightwatch": "^1.7.7",
-    "sass": "^1.26.5",
+    "sass": "^1.39.0",
     "sass-loader": "^8.0.2",
     "style-resources-loader": "^1.4.1"
   },

@@ -1,0 +1,81 @@
+@import "./mixins";
+
+@include media-md {
+  .footer-dark .item {
+    :not(.social) {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+    .text {
+      display: none;
+    }
+  }
+}
+
+@include media-lg {
+  .header-dark {
+    .navbar {
+      padding-top: 1rem;
+      padding-bottom: 0.75rem;
+      .navbar-nav .nav-link {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+      }
+    }
+  }
+  .hero {
+    display: none;
+  }
+  .search-container form {
+    width: 70%;
+    max-width: 1200px;
+    margin-top: 6rem;
+    .inner-form {
+      display: block;
+      margin-bottom: 6rem;
+      margin-top: 4rem;
+      .input-field {
+        border-right: none;
+        margin-bottom: 20px;
+        .second-wrap {
+          min-width: auto;
+          max-width: none;
+          width: 100%;
+          margin-bottom: 1em;
+        }
+        .third-wrap {
+          min-width: auto;
+          max-width: none;
+          width: 100%;
+          margin-bottom: 1em;
+        }
+        .fouth-wrapc {
+          width: 100%;
+          margin-bottom: 1em;
+        }
+        .fifth-wrap {
+          width: 100%;
+          margin-bottom: 0;
+        }
+      }
+    }
+    legend {
+      font-size: 40px;
+      margin-bottom: 40px;
+    }
+  }
+  #search {
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 0;
+  }
+  .footer-dark .item.social {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+@include media-xl {
+  .header-dark .hero h1 {
+    font-size: 5em;
+  }
+}

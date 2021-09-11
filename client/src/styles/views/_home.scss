@@ -1,0 +1,15 @@
+@import "../setup/_base.scss";
+@import "../setup/_mixins.scss";
+@import "../setup/_variables.scss";
+@import "../setup/_responsive.scss";
+
+.hero-container {
+  margin-top: 10px;
+  
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

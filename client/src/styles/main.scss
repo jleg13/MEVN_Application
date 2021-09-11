@@ -1,8 +1,27 @@
-@import "_base.scss";
-@import "_buttons.scss";
-@import "_layout.scss";
-@import "_links.scss";
-@import "_mixins.scss";
-@import "_typography.scss";
-@import "_variables.scss";
+@import "./setup/_base";
+@import "./setup/_mixins.scss";
+@import "./setup/_variables.scss";
+@import "~vue-ionicons/ionicons.scss";
 
+#app {
+  background: url(../assets/main.jpg) #444;
+  background-size: cover;
+  color: $primary-font-color;
+  background-color: $primary-color;
+  font-family: $font-stack;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.6;
+}
+
+a:hover {
+  color: inherit;
+  opacity: 0.8;
+}
+
+ul {
+  list-style: none;
+}

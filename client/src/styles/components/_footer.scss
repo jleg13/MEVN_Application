@@ -1,0 +1,43 @@
+@import "../setup/base";
+@import "../setup/_mixins.scss";
+@import "../setup/_variables.scss";
+@import "../setup/_responsive.scss";
+
+.footer-dark {
+  padding: 50px 0;
+  background-color: inherit;
+  h3 {
+    margin-bottom: $scale * 1px;
+    font-weight: bold;
+    font-size: $scale * 1.5px;
+  }
+  ul {
+    line-height: 1.6;
+    font-size: $scale * 1.2px;
+    padding: 0;
+  }
+  .item.text {
+    margin-bottom: $scale * 3px;
+    p {
+      opacity: 0.6;
+      margin-bottom: 0;
+    }
+  }
+  .item.social {
+    text-align: center;
+    > a {
+      width: $scale * 3px;
+      height: $scale * 3px;
+      line-height: $scale * 3px;
+      display: inline-block;
+      text-align: inherit;
+      margin: 0 8px;
+    }
+  }
+  .copyright {
+    text-align: center;
+    padding-top: $scale * 2px;
+    opacity: 0.3;
+    font-size: $scale * 1px;
+  }
+}

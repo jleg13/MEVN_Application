@@ -5,7 +5,9 @@
     </fieldset>
     <div class="inner-form">
       <div class="input-field first-wrap">
-        <div class="icon-wrap"><i class="fa fa-search"></i></div>
+        <div class="icon-wrap">
+          <font-awesome-icon :icon="['fa', 'search']" />
+        </div>
         <input
           class="form-control form-in"
           type="text"
@@ -15,12 +17,14 @@
       </div>
       <div class="input-field second-wrap">
         <div class="icon-wrap">
-          <i class="fa fa-calendar-check-o"></i>
+          <!-- <font-awesome-icon :icon="['fa', 'calendar-alt']" /> -->
         </div>
         <input id="datepicker" class="form-control form-in" type="date" />
       </div>
       <div class="input-field third-wrap">
-        <div class="icon-wrap"><i class="fa fa-clock-o"></i></div>
+        <div class="icon-wrap">
+          <font-awesome-icon :icon="['far', 'clock']" />
+        </div>
         <input
           id="timepicker"
           class="form-control form-in"
@@ -31,7 +35,9 @@
         />
       </div>
       <div class="input-field fourth-wrap">
-        <div class="icon-wrap"><i class="fa fa-user"></i></div>
+        <div class="icon-wrap">
+          <!-- <font-awesome-icon :icon="['fa', 'fa-user']" /> -->
+        </div>
         <select id="numpeople" class="form-select form-in">
           <optgroup label="Number of People">
             <option value="1" selected="">1 person</option>
@@ -44,21 +50,24 @@
         </select>
       </div>
       <div class="input-field fifth-wrap">
-        <button
-          id="submit-btn"
-          class="btn btn-primary btn-search"
-          type="submit"
-        >
-          Search
-        </button>
+        <UserBtn
+          btn-style="btn btn-primary btn-search"
+          btn-label="Go"
+          action=""
+          action-id=""
+        />
       </div>
     </div>
   </form>
 </template>
 
 <script>
+import UserBtn from "./UserBtn.vue";
 export default {
   name: "SearchBar",
+  components: {
+    UserBtn,
+  },
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="container hero">
-      <Hero />
+    <div class="hero-container">
+      <Hero title="The Dining Revolution is Here."/>
     </div>
     <div class="search-container">
       <SearchBar />
@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import { Hero } from "@/components/Hero.vue";
-import { SearchBar } from "@/components/SearchBar.vue";
+import Hero from "@/components/Hero.vue";
+import SearchBar from "@/components/SearchBar.vue";
 
 export default {
   name: "Home",

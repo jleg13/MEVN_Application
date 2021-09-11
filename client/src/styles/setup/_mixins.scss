@@ -1,0 +1,59 @@
+@mixin inputInteraction($shadow: none, $outline: 0) {
+  box-shadow: $shadow;
+  outline: $outline;
+}
+
+@mixin boxLayout($marg: 0, $pad: 0, $bord: 0, $bord-rad: 0) {
+  margin: $marg;
+  padding: $pad;
+  border: $bord;
+  border-radius: $bord-rad;
+}
+
+@mixin flexLayout($d: flex, $just: center, $align: center) {
+  display: $d;
+  justify-content: $just;
+  align-items: $align;
+}
+
+@mixin wideHigh($h: 0, $w: 0) {
+  height: $h;
+  width: $w;
+}
+
+@mixin wideLimit($min: 200px, $max: 200px) {
+  min-width: $min;
+  max-width: $max;
+}
+
+@mixin font(
+  $col: $primary-font-color,
+  $fam: $font-stack,
+  $size: 16px,
+  $weight: 400,
+  $align: center
+) {
+  color: $col;
+  font-family: $fam;
+  font-size: $size;
+  font-weight: $weight;
+  text-align: $align;
+}
+
+@mixin media-md {
+    @media screen and (max-width: 768px) {
+      @content;
+    }
+  }
+  
+  @mixin media-lg {
+    @media screen and (max-width: 992px) {
+      @content;
+    }
+  }
+  
+  @mixin media-xl {
+    @media screen and (max-width: 1200px) {
+      @content;
+    }
+  }

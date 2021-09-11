@@ -1,9 +1,9 @@
 <template>
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" :id='modalId' tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4>Delete Reservation <i class="fa fa-trash"></i></h4>
+          <!-- <h4>{ { modalLabel} } <font-awesome-icon :icon="['fa', 'lock']" /></h4> -->
           <button
             type="button"
             class="btn-close"
@@ -12,20 +12,18 @@
           ></button>
         </div>
         <div class="modal-body">
-          <i class="fa fa-question-circle"></i> Are you sure you want to delete
-          this reservation?
+          <!-- <font-awesome-icon :icon="['fa', 'question-circle']" /> { { modalQeustion} } -->
         </div>
-
         <div class="modal-footer">
           <button
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
           >
-            Cancel
+            Close
           </button>
-          <button type="button" id="deleteReservation" class="btn btn-primary">
-            Delete
+          <button type="button" :id="modalBtnId" class="btn btn-primary">
+            {{modalInstruction}}
           </button>
         </div>
       </div>
@@ -36,6 +34,28 @@
 <script>
 export default {
   name: "Modal",
+  props: {
+    modalId: {
+      type: String,
+      required: true,
+    },
+    modalLabel: {
+      type: String,
+      required: true,
+    },
+    modalQuestion: {
+      type: String,
+      required: true,
+    },
+    modalInstruction: {
+      type: String,
+      required: true,
+    },
+    modalBtnId: {
+      type: String,
+      required: true,
+    },
+  }
 };
 </script>
 

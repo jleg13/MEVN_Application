@@ -1,0 +1,75 @@
+@import "../setup/_base.scss";
+@import "../setup/_mixins.scss";
+@import "../setup/_variables.scss";
+@import "../setup/_responsive.scss";
+
+form {
+  width: 95%;
+  max-width: $scale*100px;
+  legend {
+    @include font($size:2rem);
+    line-height: 1;
+    margin-bottom: $scale*2px;
+  }
+  .inner-form {
+    @include boxLayout($marg: 0 0 6rem 0, $pad: $scale*1.5px, $bord-rad: $scale*1px);
+    @include flexLayout($just: space-between);
+    background: $secondary-font-color;
+    width: 100%;
+    .input-field {
+      position: relative;
+      border-right: 1px solid $secondary-font-color;
+      .icon-wrap {
+        // @include wideHigh($w: 21px, $h: 100%);
+        @include flexLayout($just: flex-end);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+      input {
+        @include font($col:$secondary-font-color);
+        @include wideHigh($w: 100%, $h: 50px);
+        @include boxLayout($pad:$scale*1px $scale*2px $scale*1px $scale*3px);
+        background: $primary-font-color;
+        display: block;
+        .form-select {
+          border-style: none;
+          padding-left: $scale*3px;
+        }
+        .placeholder {
+          @include font($col:$secondary-font-color);
+          text-transform: uppercase;
+        }
+        :focus {
+          @include inputInteraction;
+        }
+        :hover {
+          @include inputInteraction;
+        }
+      }
+      .first-wrap {
+        flex-grow: 1;
+      }
+      .second-wrap {
+        @include wideHigh;
+      }
+      .third-wrap {
+        @include wideHigh;
+      }
+      select {
+        @include boxLayout($pad:$scale*1px $scale*2px $scale*1px $scale*3px);
+        height: 50px;
+        border-width: 0px;
+        border-style: none;
+        padding: 10px 20px 10px 40px;
+      }
+      .btn-search {
+        @include wideHigh($w: 100%, $h: 50px);
+        transition: all 0.2s ease-out, color 0.2s ease-out;
+       @include boxLayout($marg:0.03em 0 0 0, $pad: 0 1rem,  $bord-rad:0% 10% 10% 0%);
+        white-space: nowrap;
+      }
+    }
+  }
+}

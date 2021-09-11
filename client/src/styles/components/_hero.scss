@@ -1,0 +1,11 @@
+@import "../setup/_base.scss";
+@import "../setup/_mixins.scss";
+@import "../setup/_variables.scss";
+@import "../setup/_responsive.scss";
+
+.hero-style {
+  @include font($fam: $font-hero, $size: 6em, $weight: bold);
+  @include boxLayout($marg: 4rem 0 3rem 0, $bord-rad: 10px);
+  text-shadow: 2px 0px $highlight-color;
+  text-align: center;
+}

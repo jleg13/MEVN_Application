@@ -34,10 +34,10 @@
           </p>
         </div>
         <div class="col item social">
-          <a href="#"><i class="icon ion-social-facebook"></i></a
-          ><a href="#"><i class="icon ion-social-twitter"></i></a
-          ><a href="#"><i class="icon ion-social-snapchat"></i></a
-          ><a href="#"><i class="icon ion-social-instagram"></i></a>
+          <a href="#"><LogoFacebookIcon w="40px" h="40px" /></a>
+          <a href="#"><LogoTwitterIcon w="40px" h="40px" /></a>
+          <a href="#"><LogoSnapchatIcon w="40px" h="40px" /></a>
+          <a href="#"><LogoInstagramIcon w="40px" h="40px" /></a>
         </div>
       </div>
       <p class="copyright">DropBearTable © 2021</p>
@@ -46,8 +46,19 @@
 </template>
 
 <script>
+import LogoFacebookIcon from 'vue-ionicons/dist/logo-facebook.vue';
+import LogoTwitterIcon from 'vue-ionicons/dist/logo-twitter.vue';
+import LogoSnapchatIcon from 'vue-ionicons/dist/logo-snapchat.vue';
+import LogoInstagramIcon from 'vue-ionicons/dist/logo-instagram.vue';
+
 export default {
   name: "Footer",
+  components: {
+    LogoFacebookIcon,
+    LogoTwitterIcon,
+    LogoSnapchatIcon,
+    LogoInstagramIcon,
+  },
 };
 </script>
 
