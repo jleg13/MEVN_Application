@@ -10,3 +10,7 @@
 [0m2021.09.02 11:42:53 INFO  time: initialize in 35s[0m
 [0m2021.09.02 11:43:00 WARN  Build server is not auto-connectable.[0m
 [0m2021.09.02 11:43:00 WARN  no build tool detected in workspace '/Users/joshua-le-gresley/Documents/UNE/2021/COSC360/assignments/COSC360_Project_Vue'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.11.23 16:15:04 INFO  Started: Metals version 0.10.9 in workspace '/Users/joshua-le-gresley/Documents/UNE/2021/COSC360/assignments/MEVN_Application' for client Visual Studio Code 1.60.2.[0m
+[0m2021.11.23 16:15:09 INFO  time: initialize in 4.7s[0m
+[0m2021.11.23 16:15:10 WARN  Build server is not auto-connectable.[0m
+[0m2021.11.23 16:15:10 WARN  no build tool detected in workspace '/Users/joshua-le-gresley/Documents/UNE/2021/COSC360/assignments/MEVN_Application'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
