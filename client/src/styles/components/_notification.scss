@@ -2,3 +2,16 @@
 @import "../setup/_mixins.scss";
 @import "../setup/_variables.scss";
 @import "../setup/_responsive.scss";
+
+.toast{
+    max-width: 500px;
+    background-color: $primary-color;
+    border: $primary-color 1px solid;
+    border-radius: 5px;
+    .toast-header{
+        color: $secondary-color;
+        border: $primary-color;
+        background-color: $secondary-font-color;
+    }
+}
+

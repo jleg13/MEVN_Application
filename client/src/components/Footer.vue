@@ -6,11 +6,7 @@
           <h3>Discover</h3>
           <ul class="info-sections">
             <li><a href="#">Restaurants near me</a></li>
-            <li>
-              <router-link :to="{ name: 'Restaurants', params: {} }">
-                All Restaurants
-              </router-link>
-            </li>
+            <li><a href="#"> All Restaurants </a></li>
             <li><a href="#">Cuisines near me</a></li>
             <li><a href="#">All cuisines</a></li>
             <li><a href="#">Pick for me!</a></li>
@@ -46,10 +42,10 @@
 </template>
 
 <script>
-import LogoFacebookIcon from 'vue-ionicons/dist/logo-facebook.vue';
-import LogoTwitterIcon from 'vue-ionicons/dist/logo-twitter.vue';
-import LogoSnapchatIcon from 'vue-ionicons/dist/logo-snapchat.vue';
-import LogoInstagramIcon from 'vue-ionicons/dist/logo-instagram.vue';
+import LogoFacebookIcon from "vue-ionicons/dist/logo-facebook.vue";
+import LogoTwitterIcon from "vue-ionicons/dist/logo-twitter.vue";
+import LogoSnapchatIcon from "vue-ionicons/dist/logo-snapchat.vue";
+import LogoInstagramIcon from "vue-ionicons/dist/logo-instagram.vue";
 
 export default {
   name: "Footer",

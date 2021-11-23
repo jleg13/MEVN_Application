@@ -1,0 +1,8 @@
+@import "../setup/_base.scss";
+@import "../setup/_mixins.scss";
+@import "../setup/_variables.scss";
+@import "../setup/_responsive.scss";
+
+.pie-chart-container{
+    @include flexLayout();
+}

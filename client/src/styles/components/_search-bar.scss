@@ -5,17 +5,21 @@
 
 form {
   width: 95%;
-  max-width: $scale*100px;
+  max-width: $scale * 100px;
   legend {
-    @include font($size:2rem);
+    @include font($size: 2rem);
     line-height: 1;
-    margin-bottom: $scale*2px;
+    margin-bottom: $scale * 2px;
   }
   .inner-form {
-    @include boxLayout($marg: 0 0 6rem 0, $pad: $scale*1.5px, $bord-rad: $scale*1px);
+    @include boxLayout(
+      $marg: 0 0 6rem 12rem,
+      $pad: $scale * 1.5px,
+      $bord-rad: $scale * 1px
+    );
     @include flexLayout($just: space-between);
     background: $secondary-font-color;
-    width: 100%;
+    width: 70%;
     .input-field {
       position: relative;
       border-right: 1px solid $secondary-font-color;
@@ -26,19 +30,25 @@ form {
         top: 0;
         left: 0;
         z-index: 1;
+        .fa-search, .fa-calendar-alt, .fa-clock-o, .fa-clock, .fa-user {
+          @include boxLayout($marg: 1em 0 0 1em);
+          color: $primary-color;
+        }
       }
       input {
-        @include font($col:$secondary-font-color);
+        @include font($col: $secondary-font-color);
         @include wideHigh($w: 100%, $h: 50px);
-        @include boxLayout($pad:$scale*1px $scale*2px $scale*1px $scale*3px);
+        @include boxLayout(
+          $pad: $scale * 1px $scale * 2px $scale * 1px $scale * 3px
+        );
         background: $primary-font-color;
         display: block;
         .form-select {
           border-style: none;
-          padding-left: $scale*3px;
+          padding-left: $scale * 3px;
         }
         .placeholder {
-          @include font($col:$secondary-font-color);
+          @include font($col: $secondary-font-color);
           text-transform: uppercase;
         }
         :focus {
@@ -58,7 +68,9 @@ form {
         @include wideHigh;
       }
       select {
-        @include boxLayout($pad:$scale*1px $scale*2px $scale*1px $scale*3px);
+        @include boxLayout(
+          $pad: $scale * 1px $scale * 2px $scale * 1px $scale * 3px
+        );
         height: 50px;
         border-width: 0px;
         border-style: none;
@@ -67,7 +79,11 @@ form {
       .btn-search {
         @include wideHigh($w: 100%, $h: 50px);
         transition: all 0.2s ease-out, color 0.2s ease-out;
-       @include boxLayout($marg:0.03em 0 0 0, $pad: 0 1rem,  $bord-rad:0% 10% 10% 0%);
+        @include boxLayout(
+          $marg: 0.03em 0 0 0,
+          $pad: 0.8rem 1rem,
+          $bord-rad: 0% 10% 10% 0%
+        );
         white-space: nowrap;
       }
     }

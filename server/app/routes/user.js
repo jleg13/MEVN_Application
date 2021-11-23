@@ -5,6 +5,9 @@ const userValidator = require('../services/userValidation');
 // EventSource activate notification
 router.get('/:userId/notification', userValidator.validateUserId, userController.reservationNotification)
 
+// Collect data for D3 Graph
+router.get('/reservations', userController.getReservationData)
+
 // new user signup
 router.post('/signup', userValidator.validateUser, userController.createUser);
 
@@ -18,7 +21,7 @@ router.get('/:userId/reservations', userValidator.validateUserId, userController
 router.post('/:userId/reservations', userValidator.validateUserId, userValidator.validateReservation, userController.createUserReservation);
 
 // Get one existing reservations
-router.get('/:userId/reservations/:reservationId', userValidator.validateUserId, userValidator.validateReservationId, userController.getUserReservations);
+router.get('/:userId/reservations/:reservationId', userValidator.validateUserId, userValidator.validateReservationId, userController.getUserReservation);
 
 // Update an existing reservation
 router.put('/:userId/reservations/:reservationId', userValidator.validateUserId, userValidator.validateReservationId, userValidator.validateReservationUpdate, userController.updateUserReservation);

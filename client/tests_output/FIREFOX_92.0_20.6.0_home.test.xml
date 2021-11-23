@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="2">
+
+  <testsuite name="home.test"
+    errors="0" failures="0" hostname="" id="" package="home.test" skipped="0"
+    tests="2" time="7.082" timestamp="">
+  
+    <testcase name="default e2e tests" classname="home.test" time="2.239" assertions="3">
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="test feature 1 A unchecked and feature 1 unchecked" classname="home.test" time="4.843" assertions="8">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+    
+
+  
+  </testsuite>
+</testsuites>

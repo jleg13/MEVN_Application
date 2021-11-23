@@ -1,7 +1,19 @@
 const mongoose = require("mongoose");
 const User = require("../models/User");
 const Reservation = require("../models/Reservation");
+const ObjectId = require("mongodb").ObjectID;
 
+//utility function to format date string
+function formatDate(date) {
+  let month = "" + (date.getMonth() + 1);
+  let day = "" + date.getDate();
+  let year = date.getFullYear();
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return [year, month, day].join("-");
+}
 // Define clients array for notification
 let clients = [];
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
@@ -9,15 +21,7 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 // Send out notifications after 5 secs to confirm reservation changed
 // status from 'Processing' to 'Confirmed'
 const sendEvents = async (reservationUpdate) => {
-  let client;
-  for (let i = 0; i < clients.length; i++) {
-    if (clients[i].id === reservationUpdate.userId) {
-      client = clients[i];
-      break;
-    }
-  }
-  await delay(5000);
-
+  await delay(4000);
   let updateStatus = await Reservation.findOneAndUpdate(
     {
       _id: reservationUpdate._id,
@@ -27,22 +31,18 @@ const sendEvents = async (reservationUpdate) => {
       new: true,
     }
   ).exec();
-
-  //get restaurant details to extract name
-  let restaurant = await Restaurant.findOne({
-    _id: reservationUpdate.restaurant,
-  }).exec();
-
-
-  if ( updateStatus && restaurant ) {
-    clients.forEach(client => client.res.write(`event: reservationConfirmed\ndata:A user just confirmed a booking at ${restaurant.name}\n\n`))
-  } else if ( updateStatus && !restaurant ) {
-    clients.forEach(client => client.res.write("event: reservationConfirmed\ndata: A user just confirmed a booking at one of our restaurants\n\n"))
-  } else if ( !updateStatus && restaurant ) {
-    client.res.write(`event: reservationConfirmed\ndata: Sorry there was an error confirming your recent booking to ${restaurant.name}. Please try again\n\n`);
-  } else {
-    client.res.write("event: reservationConfirmed\ndata: Sorry there was an error confirming your booking. Please try again\n\n");
-  }
+  clients.forEach((client) => {
+    if (updateStatus) {
+      let date = formatDate(reservationUpdate.date);
+      client.res.write(
+        `event: reservationConfirmed\ndata: Confirmed!! Hope you enjoy ${reservationUpdate.name} on ${date} @ ${reservationUpdate.time}\n\n`
+      );
+    } else {
+      client.res.write(
+        "event: reservationConfirmed\ndata: Sorry there was an error confirming your booking. Please try again\n\n"
+      );
+    }
+  });
 };
 
 exports.readUser = async (req, res) => {
@@ -174,7 +174,7 @@ exports.getUserReservation = async (req, res) => {
     return res.status(200).json({
       userId: req.params.userId,
       reservationId: req.params.reservationId,
-      data: userReservations,
+      data: userReservation[0],
       confirmation: "success",
       msg: "successfully retrieved user reservation",
     });
@@ -183,9 +183,10 @@ exports.getUserReservation = async (req, res) => {
 
 exports.createUserReservation = async (req, res) => {
   let reservation = new Reservation({
-    _id: new mongoose.Types.ObjectId(),
-    userId: req.params.userId,
-    restaurant: req.body.restaurant,
+    _id: new ObjectId(),
+    userId: ObjectId(req.params.userId),
+    restaurant: ObjectId(req.body.restaurant),
+    name: req.body.name,
     date: req.body.date,
     time: req.body.time,
     guests: req.body.guests,
@@ -234,8 +235,8 @@ exports.updateUserReservation = async (req, res) => {
       confirmation: "success",
       msg: "reservation successfully updated",
     });
-    return sendEvents(userReservation);
   }
+  return sendEvents(userReservation);
 };
 
 exports.deleteUserReservation = async (req, res) => {
@@ -280,7 +281,7 @@ exports.createNewGuestReservation = async (req, res) => {
   });
   // create new reservation
   let reservation = new Reservation({
-    _id: new mongoose.Types.ObjectId(),
+    _id: ObjectId(),
     userId: user._id,
     restaurant: req.body.restaurant,
     date: req.body.date,
@@ -326,6 +327,42 @@ exports.createNewGuestReservation = async (req, res) => {
   return sendEvents(output_reservation);
 };
 
+exports.getReservationData = async (req, res) => {
+  let reservations = await Reservation.find().exec();
+  // Check reservations found
+  if (!reservations) {
+    return res.status(401).json({
+      errors: {
+        confirmation: "fail",
+      },
+    });
+  } else {
+    let count = {};
+    reservations.forEach((reservation) => {
+      if (reservation.name in count) {
+        count[reservation.name] += 1;
+      } else {
+        count[reservation.name] = 1;
+      }
+    });
+    // let total = Object.values(count).reduce((a, b) => a + b);
+    let countArr = [];
+    let countObjArr = Object.entries(count);
+    for (let i = 0; i < countObjArr.length; i++) {
+      let key = countObjArr[i][0];
+      let obj = {};
+      obj["name"] = key;
+      obj["total"] = countObjArr[i][1];
+      countArr.push(obj);
+    }
+    return res.status(200).json({
+      data: countArr,
+      confirmation: "success",
+      msg: "successfully retrieved data",
+    });
+  }
+};
+
 exports.reservationNotification = (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
   res.setHeader("Connection", "keep-alive");
@@ -333,7 +370,7 @@ exports.reservationNotification = (req, res) => {
   res.setHeader("Cache-Control", "no-cache");
 
   const newClient = {
-    id: req.params.userId,
+    id: new ObjectId(req.params.userId),
     res,
   };
   clients.push(newClient);

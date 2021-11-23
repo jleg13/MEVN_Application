@@ -1,17 +1,17 @@
 <template>
-  action-button
   <header class="header-dark">
     <nav class="navbar navbar-dark navbar-expand-lg navigation-clean-search">
       <div class="container">
-        <a class="navbar-brand" href="#"
+        <router-link :to="{ name: 'Home' }" class="navbar-brand"
           ><img
             class="d-inline-block align-top"
             src="@/assets/drop.png"
             alt='""'
             width="45"
             height="40"
-          />&nbsp; DropBearTable&nbsp;</a
-        ><button
+          />&nbsp; DropBearTable&nbsp;</router-link
+        >
+        <button
           data-bs-toggle="collapse"
           class="navbar-toggler"
           data-bs-target="#navcol-1"
@@ -24,7 +24,7 @@
           <form id="nav-search" class="me-auto" target="_self">
             <div class="d-flex align-items-center">
               <label class="form-label d-flex mb-0" for="search-field"
-                ><font-awesome-icon :icon="['fa', 'search']" /></label
+                ><i class="fa fa-search"></i> </label
               ><input
                 class="form-control search-field"
                 type="search"
@@ -34,21 +34,15 @@
             </div>
           </form>
           <div class="register-buttons">
-            <span class="navbar-text"><a class="login" href="#">Log In</a></span
-            ><UserBtn 
-              btn-style="btn btn-light action-button"
-              btn-label="Sign Up"
-              action=""
-              action-id=""
-            />
+            <router-link
+              @click="scrollToTop"
+              to="Reservations"
+              class="btn btn-light action-button"
+              role="button"
+              href="#"
+              >My Reservations</router-link
+            >
           </div>
-          <Modal
-            modal-id="exampleModal"
-            modal-label="Log Out"
-            modal-question="Are you sure you want to log-off?"
-            modal-instruction="Log Out"
-            modal-btn-id="logout"
-          />
         </div>
       </div>
     </nav>
@@ -56,13 +50,12 @@
 </template>
 
 <script>
-import UserBtn from "./UserBtn.vue";
-import Modal from "./Modal.vue";
 export default {
   name: "Header",
-  components: {
-    UserBtn,
-    Modal,
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 100);
+    },
   },
 };
 </script>

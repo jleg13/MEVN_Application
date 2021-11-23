@@ -31,7 +31,7 @@ exports.validateUserId = [
   param("userId")
     .trim()
     .matches(/^[a-f\d]{24}$/i)
-    .withMessage("invalid reservationId"),
+    .withMessage("invalid userId"),
 
   (req, res, next) => {
     let errors = validationResult(req);
@@ -48,6 +48,10 @@ exports.validateReservation = [
     .trim()
     .matches(/^[a-f\d]{24}$/i)
     .withMessage("invalid restaurant"),
+  body("name")
+    .trim()
+    .exists({ checkFalsy: true })
+    .withMessage("name cannot be empty"),
   // date must be a valid date yyyy-mm-dd between now and 1 week in future
   body("date")
     .trim()

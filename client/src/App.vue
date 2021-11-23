@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <Header />
-    <router-view/>
-    <Notification />
+    <router-view />
     <Footer />
+    <Notification></Notification>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
     Header,
     Footer,
     Notification,
-  }
+  },
 };
 </script>
 

@@ -2,3 +2,55 @@
 @import "../setup/_mixins.scss";
 @import "../setup/_variables.scss";
 @import "../setup/_responsive.scss";
+
+.restaurant-list {
+  .item {
+    text-align: center;
+    .box {
+      @include boxLayout($marg: 0 0 30px 0, $pad: 30px, $bord-rad: 8px);
+      @include font($weight: bold);
+      background-color: #1e2833;
+      min-height: 36em;
+    }
+    .name {
+      @include boxLayout($marg: 28px 0 8px 0);
+      color: $primary-font-color;
+    }
+    .date {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: $secondary-color;
+      letter-spacing: 2px;
+      font-size: 13px;
+    }
+    .guests,
+    .mobile,
+    .requests {
+      font-size: 15px;
+      @include boxLayout($marg: 15px 0 20px 0);
+    }
+    img {
+      max-width: 160px;
+    }
+  }
+  .reserve {
+    font-size: 18px;
+    color: #a2a8ae;
+  }
+  .update {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 5em;
+  }
+  .stats img {
+    padding-top: 2em;
+  }
+  a {
+    align-content: space-around;
+    @include boxLayout($marg: 0.5em 1em, $pad: 0.5em, $bord-rad: 10px);
+    :hover {
+      color: $secondary-color;
+      cursor: pointer;
+    }
+  }
+}

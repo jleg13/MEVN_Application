@@ -9,8 +9,8 @@
     >
       <div class="toast-header">
         <img
-          src="img/dropblk.png"
-          width="40"
+          src="../assets/dropblk.png"
+          width="30"
           class="rounded me-2"
           alt="DropBear"
         />
@@ -23,14 +23,38 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="toast-body">Your reservation request has been confirmed.</div>
+      <div class="toast-body">{{ msg }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import { Toast } from "bootstrap/dist/js/bootstrap.esm.min.js";
+
 export default {
   name: "Notification",
+  data() {
+    return {
+      msg: "",
+    };
+  },
+  methods: {
+    showNotification() {
+      const notification = document.getElementById("liveToast");
+      const showNotification = new Toast(notification);
+      showNotification.show();
+    },
+  },
+  created() {
+    const sse = new EventSource(
+      `http://localhost:3000/api/user/${this.$store.state.activeUser}/notification`
+    );
+    sse.addEventListener("reservationConfirmed", (event) => {
+      this.$store.dispatch("initReservations", this.$store.state.activeUser);
+      this.msg = event.data;
+      this.showNotification();
+    });
+  },
 };
 </script>
 

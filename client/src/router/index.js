@@ -1,41 +1,44 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "@/views/Home.vue";
-import Booking from "@/views/Booking.vue";
-import Login from "@/views/Login.vue";
-import Reservations from "@/views/Reservations.vue";
-import Restaurants from "@/views/Restaurants.vue";
-import Signup from "@/views/Signup.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
-  },
-  {
-    path: "/booking",
-    name: "Booking",
-    component: Booking,
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
-  },
-  {
-    path: "/reservations",
-    name: "Reservations",
-    component: Reservations,
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
   },
   {
     path: "/restaurants",
     name: "Restaurants",
-    component: Restaurants,
+    component: () =>
+      import(/* webpackChunkName: "restaurants" */ "../views/Restaurants.vue"),
   },
   {
-    path: "/signup",
-    name: "Signup",
-    component: Signup,
+    path: "/reservation/:restaurant",
+    name: "Reservation",
+    component: () =>
+      import(/* webpackChunkName: "reservation" */ "../views/Reservation.vue"),
+  },
+  {
+    path: "/reservation/:restaurant/:reservation",
+    name: "ReservationUpdate",
+    component: () =>
+      import(/* webpackChunkName: "reservation" */ "../views/Reservation.vue"),
+  },
+  {
+    path: "/reservations",
+    name: "Reservations",
+    component: () =>
+      import(
+        /* webpackChunkName: "reservations" */ "../views/Reservations.vue"
+      ),
+  },
+  {
+    path: "/:catchAll(.*)*",
+    name: "PageNotFound",
+    component: () =>
+      import(
+        /* webpackChunkName: "pagenotfound" */ "../views/PageNotFound.vue"
+      ),
   },
 ];
 

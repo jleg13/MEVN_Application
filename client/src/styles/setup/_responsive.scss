@@ -10,6 +10,14 @@
       display: none;
     }
   }
+  .restaurant-list h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+  }
+  .restaurant-list h2 {
+    margin-bottom: 25px;
+    font-size: 24px;
+  }
 }
 
 @include media-lg {
@@ -71,6 +79,10 @@
   .footer-dark .item.social {
     text-align: center;
     margin-top: 20px;
+  }
+  .res-form {
+    padding-bottom: 1em;
+    padding-top: 4em;
   }
 }
 

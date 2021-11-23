@@ -6,7 +6,9 @@ const restaurantValidator = require("../services/restaurantValidation");
 router.get("/", restaurantController.readRestaurants);
 
 // Create new restaurant
-router.post("/", restaurantValidator.validateNewRestaurant,
+router.post(
+  "/",
+  restaurantValidator.validateNewRestaurant,
   restaurantController.createRestaurant
 );
 
@@ -25,4 +27,3 @@ router.get(
 );
 
 module.exports = router;
-

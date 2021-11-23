@@ -2,3 +2,20 @@
 @import "../setup/_mixins.scss";
 @import "../setup/_variables.scss";
 @import "../setup/_responsive.scss";
+
+.restaurant-list {
+  color: #313437;
+  @include boxLayout($marg: 3em 0);
+  .container {
+    @include flexLayout($d: block, $align: center);
+    .section-title {
+      @include boxLayout($marg: 2em 0, $pad: 5px, $bord-rad: 20px);
+      @include font($size: 3em, $weight:bold);
+      box-sizing: border-box;
+      display: table;
+      max-width: 100%;
+      white-space: normal;
+      background: rgba(4, 0, 0, 0.31);
+    }
+  }
+}

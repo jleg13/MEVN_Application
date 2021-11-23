@@ -2,3 +2,34 @@
 @import "../setup/_mixins.scss";
 @import "../setup/_variables.scss";
 @import "../setup/_responsive.scss";
+
+.item {
+  text-align: center;
+  .box {
+    @include boxLayout($marg: 0 0 30px 0, $pad: 30px, $bord-rad: 8px);
+    @include font($weight: bold);
+    background-color: #1e2833;
+    min-height: 30em;
+  }
+  .name {
+    @include boxLayout($marg: 28px 0 8px 0);
+    color: $primary-font-color;
+  }
+  .cuisine {
+    text-transform: uppercase;
+    color: $secondary-color;
+    letter-spacing: 2px;
+    font-size: 13px;
+  }
+  .description {
+    font-size: 15px;
+    @include boxLayout($marg: 15px 0 20px 0);
+  }
+  img {
+    max-width: 160px;
+  }
+}
+.reserve {
+  font-size: 18px;
+  color: #a2a8ae;
+}

@@ -2,14 +2,22 @@
 
 Name: Joshua Le Gresley
 
-Email: jlegresl@myune.edu.au
+Email: joshlegresley@hotmail.com 
 
+This complete full-stack application was the culmination of the Advanced Web Programming unit at UNE. Through the all the core skills for full stack development were explored including, refreshing knowledge of ES6+, the fundementals of the OSI model, DNS, HTTP, CORS, and webpack. Server-side we learnt how to build a node.js using the Express framework. Following the MVC architecture with integrated mogodb with Mongoose. On the client-side we explored the fundementals of both the React and Vue.js frameworks including Flux architecture. We developed the the skills to connect the client and server using the REST api and also Websockets and ServerSentEvents(SSE). Finally we also explore using web graphics such as d3.js and how to work with SVG's.
+
+**Presentation video can be found at: [DropBearTable](https://youtu.be/tmchx_ktZH0)**
 
 # How to run the app
 - Install [Docker](https://www.docker.com/products/docker-desktop) and [Docker Compose](https://docs.docker.com/compose/install/) on your machine.
-- In the terminal, run the command `docker-compose up -d` or `docker compose up -d` in the `dropbeartable` directory.
-- Node.js Server-side: visit [http://localhost:3000](http://localhost:3000).
-- MongoDB: visit [http://localhost:8081](http://localhost:8081).
+- In the terminal, run the command `docker-compose up -d` or `docker compose up -d` in the `dropbeartable_mervn` directory.
+
+Before visiting the sites front-end the demo requires data installed into the database. Visit [http://localhost:8081](http://localhost:8081). 
+- Create a new database called **test**
+- Within this new database create two new collections, **restaurants** and **reservations**.
+- Finally import data files for the respective collections, files are located in **/data** directory in the root of the project.
+
+Now the site is ready and can be accessed at:
 - Vue.js Client-side: visit [http://localhost:8080](http://localhost:8080).
 
 
@@ -22,138 +30,10 @@ Important: the command will remove all unused volumes, including the named volum
 	- select your database and export the data
 - Run the command `docker-compose down -v` to stop the running containers and remove the volumes.
 
-# Mongo Data
-To test the server endpoints import the mongoDb data files exported from development stored in:
-
-- /server/mongo-data
-
-Visit [http://localhost:8081](http://localhost:8081) and import each file as a collection in the 'test' database.
-
-# Testing the API
-Use the following curl commands to test the API endpoints:
-## User Signup
-```
-curl --request POST \
-  --url http://localhost:3000/api/user/signup \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "email": "test@example.com",
-  "password": "password123"
-}
-'
-```
-## User Login
-```
-curl --request POST \
-  --url http://localhost:3000/api/user/login \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "email": "test@example.com",
-  "password": "password123"
-}
-'
-```
-## New Reservation
-```
-curl --request POST \
-  --url http://localhost:3000/api/user/test@3154/reservations \
-  --header 'Content-Type: application/json' \
-  --data '{
-      "restaurant": "Bella Bella",
-      "date": "2021-08-18",
-      "time": "18:00",
-      "guests": 6,
-      "mobile": "0408378465",
-      "requests": "peanut allergy",
-      "status": "Processing"
-    }'
-```
-## Get User Reservations
-```
-curl --request GET \
-  --url http://localhost:3000/api/user/test@3154/reservations \
-  --header 'Content-Type: application/json'
-```
-## Update User Reservation
-```
-curl --request PUT \
-  --url http://localhost:3000/api/user/test@3154/reservations/611b309513b11719a30e41c6 \
-  --header 'Content-Type: application/json' \
-  --data '{
-      "date": "2021-08-19",
-	"status": "Processing"
-} '
-```
-## Delete User Reservation
-```
-curl --request DELETE \
-  --url http://localhost:3000/api/user/josh6349/reservations/611b309513b11719a30e41c6
-```
-## Add a Guest Reservation
-```
-curl --request POST \
-  --url http://localhost:3000/api/user/guest-reservation \
-  --header 'Content-Type: application/json' \
-  --data '{
-	 "restaurant": "Spice Is Right",
-	 "date": "2021-08-17",
-		"time": "18:00",
-		"guests": 6,
-		"mobile": "0408378465",
-		"requests": "peanut allergy",
-		"status": "Processing"
-}
-'
-```
-## Guest Login
-```
-curl --request POST \
-  --url http://localhost:3000/api/user/login/guest \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "email": "guest5977",
-  "password": "a17e25e8dff0"
-}'
-```
-## Add Restaurant
-```
-curl --request POST \
-  --url http://localhost:3000/api/restaurant \
-  --header 'Content-Type: application/json' \
-  --data '{
-    "name": "Bella",
-    "cuisine": "italian",
-    "openTime": "17:00",
-    "closeTime": "23:00",
-    "seatingInterval": 30,
-    "tableCapacityPerInterval": 4,
-    "info": "Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est, et interdum justo suscipit id. Etiam dictum feugiat tellus, a semper massa.",
-    "image": "https://dropbeartable.s3.ap-southeast-2.amazonaws.com/italian.jpg"
-  }'
-```
-## Get Resaurant Schedule
-```
-curl --request GET \
-  --url http://localhost:3000/api/restaurant/6119de6e65cbdf03670fca42/schedule
-```
-
-
-# How to Open the Swagger API Docs
-## Using the Swagger generated server
-
-### Overview
-This server was generated by the [swagger-codegen](https://github.com/swagger-api/swagger-codegen) project. 
-
-### Running the server
-To run the server using npm, run:
-
-```
-npm --prefix ./server/API-Docs run start
-```
-
-To view the API Docs:
-
-```
-http://localhost:9000/docs
-```
-
+# Functionalities 
+- For the client-facing storefront CRUD opertations are prestented by using mock restaurant data.
+- As required a user can make a reservation specifying, restaurant name, date
+time, number of guests limited to 6, mobile number and any special requests.
+- Updates can be made to number of guests, mobile number, special requests, time and date.
+- A user is notified upon confirmation of the reservation
+- Also users can see trending restaurants in the reservations page in the graph showing total reservation numbers

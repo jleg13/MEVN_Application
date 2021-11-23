@@ -1,0 +1,796 @@
+openapi: 3.0.1
+info:
+  title: DropBearTable
+  description: This is a sample server API for a new restaurant service.
+  contact:
+    email: jlegresl@myune.edu.au
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: /
+tags:
+- name: DropBearTable
+  description: The dining revolution
+paths:
+  /:
+    get:
+      tags:
+      - /api/restaurant
+      summary: Get all restaurants
+      operationId: rootGET
+      responses:
+        "200":
+          description: Returns all restaurants
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "204":
+          description: No restaurants available
+        "401":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Apirestaurant
+    post:
+      tags:
+      - /api/restaurant
+      summary: Add an new restaurant
+      operationId: rootPOST
+      requestBody:
+        description: Restaurant object that needs to be saved to database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+        required: true
+      responses:
+        "201":
+          description: Returns a new restaurant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201'
+        "401":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401_1'
+      x-swagger-router-controller: Apirestaurant
+  /{restaurantId}:
+    get:
+      tags:
+      - /api/restaurant
+      summary: Get details of a resuarant
+      operationId: restaurantIdGET
+      parameters:
+      - name: restaurantId
+        in: path
+        description: ID of restaurant to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Returns restaurant by Id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        "204":
+          description: No restaurants available
+        "401":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Apirestaurant
+  /{restaurantId}/schedule:
+    get:
+      tags:
+      - /api/restaurant
+      summary: Get a restaurants schedule
+      operationId: restaurantIdScheduleGET
+      parameters:
+      - name: restaurantId
+        in: path
+        description: ID of restaurant to return
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Returns a restaurants schedule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        "401":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401_2'
+      x-swagger-router-controller: Apirestaurant
+  /{keyword}:
+    get:
+      tags:
+      - /api/search
+      summary: Search based on keyword
+      operationId: keywordGET
+      parameters:
+      - name: keyword
+        in: path
+        description: keyword for search
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Returns restaurant by keyword search
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "204":
+          description: No restaurants match search
+        "401":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Apisearch
+  /{date}/{time}/{guests}:
+    get:
+      tags:
+      - /api/search
+      summary: "Search based on date, time and keyword"
+      operationId: dateTimeGuestsGET
+      parameters:
+      - name: date
+        in: path
+        description: date for search
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: time
+        in: path
+        description: time for search
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: guests
+        in: path
+        description: guests for search
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Returns restaurant from search
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "204":
+          description: No restaurants match search
+        "401":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Apisearch
+  /signup:
+    post:
+      tags:
+      - /api/user
+      summary: Add a new user
+      operationId: signupPOST
+      requestBody:
+        description: User object to save to database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/signup_body'
+        required: true
+      responses:
+        "201":
+          description: Returns a new user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201_1'
+        "400":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Apiuser
+  /login:
+    post:
+      tags:
+      - /api/user
+      summary: Login in as a registered user
+      operationId: loginPOST
+      requestBody:
+        description: User object to login in
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/login_body'
+        required: true
+      responses:
+        "200":
+          description: Returns a user login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        "400":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Apiuser
+  /login/guest:
+    post:
+      tags:
+      - /api/user
+      summary: Login in as a guest user
+      operationId: loginGuestPOST
+      requestBody:
+        description: User object to login in
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/login_guest_body'
+        required: true
+      responses:
+        "200":
+          description: Returns a guest user login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        "400":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Apiuser
+  /guest-reservation:
+    post:
+      tags:
+      - /api/user
+      summary: Save reservation as a guest user
+      operationId: guest_reservationPOST
+      requestBody:
+        description: Reservation object that needs to be saved to database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/guestreservation_body'
+        required: true
+      responses:
+        "201":
+          description: Returns a new reservation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201_2'
+        "400":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Apiuser
+  /{userId}/reservations:
+    get:
+      tags:
+      - /api/user
+      summary: Get all reservation of a user
+      operationId: userIdReservationsGET
+      parameters:
+      - name: userId
+        in: path
+        description: userId to find reservations
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "201":
+          description: Returns a new restaurant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201'
+        "401":
+          description: Invalid ID supplied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401_1'
+      x-swagger-router-controller: Apiuser
+    post:
+      tags:
+      - /api/user
+      summary: Post a new reservation for a user
+      operationId: userIdReservationsPOST
+      parameters:
+      - name: userId
+        in: path
+        description: userId to find reservations
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Reservation object that needs to be saved to database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/userId_reservations_body'
+        required: true
+      responses:
+        "201":
+          description: Returns a new reservation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201_2'
+        "400":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Apiuser
+  /{userId}/reservations/{reservationId}:
+    put:
+      tags:
+      - /api/user
+      summary: Update a reservation of a user
+      operationId: userIdReservationsReservationIdPUT
+      parameters:
+      - name: userId
+        in: path
+        description: userId to find reservation
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: reservationId
+        in: path
+        description: reservationId to update
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Reservation object that needs to be saved to database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reservations_reservationId_body'
+        required: true
+      responses:
+        "201":
+          description: Returns an updated reservation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201_2'
+        "400":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Apiuser
+    delete:
+      tags:
+      - /api/user
+      summary: Delete a reservation of a user
+      operationId: userIdReservationsReservationIdDELETE
+      parameters:
+      - name: userId
+        in: path
+        description: userId to find reservation
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: reservationId
+        in: path
+        description: reservationId to delete
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Returns confirmation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_4'
+        "400":
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_401'
+      x-swagger-router-controller: Apiuser
+  /{userId}/notification:
+    get:
+      tags:
+      - /api/user
+      operationId: userIdNotificationGET
+      parameters:
+      - name: userId
+        in: path
+        description: userId to send notification
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: sends notification
+        "401":
+          description: Error
+      x-swagger-router-controller: Apiuser
+components:
+  schemas:
+    inline_response_200:
+      type: object
+      properties:
+        confirmation:
+          type: string
+          example: success
+        msg:
+          type: string
+          example: successfully retrieved restaurants
+      example:
+        msg: successfully retrieved restaurants
+        confirmation: success
+    inline_response_401:
+      type: object
+      properties:
+        errors:
+          type: object
+          properties:
+            confirmation:
+              type: string
+              example: fail
+    body:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Bella Bella
+        cuisine:
+          type: string
+          example: italian
+        openTime:
+          type: string
+          example: 11:00
+        closeTime:
+          type: string
+          example: 22:00
+        seatingInterval:
+          type: number
+          example: 30
+        tableCapacityPerInterval:
+          type: number
+          example: 3
+        info:
+          type: string
+          example: Delicious food
+        image:
+          type: string
+          example: www.image.com
+    inline_response_201:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: "1234"
+              name:
+                type: string
+                example: Bella Bella
+            example:
+              name: Bella Bella
+              _id: "1234"
+        confirmation:
+          type: string
+          example: success
+        msg:
+          type: string
+          example: successfully created restaurant
+      example:
+        msg: successfully created restaurant
+        data:
+        - name: Bella Bella
+          _id: "1234"
+        - name: Bella Bella
+          _id: "1234"
+        confirmation: success
+    inline_response_401_1:
+      type: object
+      properties:
+        errors:
+          type: object
+          properties:
+            value:
+              type: string
+              example: Bella Bella
+            confirmation:
+              type: string
+              example: fail
+            msg:
+              type: string
+              example: he restaurant name is already in use
+            param:
+              type: string
+              example: name
+            location:
+              type: string
+              example: success
+    inline_response_200_1:
+      type: object
+      properties:
+        confirmation:
+          type: string
+          example: success
+        msg:
+          type: string
+          example: successfully retrieved restaurant
+      example:
+        msg: successfully retrieved restaurant
+        confirmation: success
+    inline_response_200_2:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: "1234"
+            example:
+              _id: "1234"
+        confirmation:
+          type: string
+          example: success
+        msg:
+          type: string
+          example: restaurant schedule successfully retrieved
+      example:
+        msg: restaurant schedule successfully retrieved
+        data:
+        - _id: "1234"
+        - _id: "1234"
+        confirmation: success
+    inline_response_401_2:
+      type: object
+      properties:
+        errors:
+          type: object
+          properties:
+            reservationId:
+              type: string
+              example: "1234"
+            confirmation:
+              type: string
+              example: fail
+            msg:
+              type: string
+              example: failed to build restaurant schedule
+            param:
+              type: string
+              example: reservationId
+    signup_body:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@example.com
+        password:
+          type: string
+          example: password
+    inline_response_201_1:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: user1234
+        email:
+          type: string
+          example: user@example.com
+        confirmation:
+          type: string
+          example: success
+        msg:
+          type: string
+          example: successfully created new user
+      example:
+        msg: successfully created new user
+        confirmation: success
+        userId: user1234
+        email: user@example.com
+    login_body:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@example.com
+        password:
+          type: string
+          example: password
+    inline_response_200_3:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: user1234
+        email:
+          type: string
+          example: user@example.com
+        confirmation:
+          type: string
+          example: success
+        msg:
+          type: string
+          example: successfully loged in user
+      example:
+        msg: successfully loged in user
+        confirmation: success
+        userId: user1234
+        email: user@example.com
+    login_guest_body:
+      type: object
+      properties:
+        email:
+          type: string
+          example: guest1234
+        password:
+          type: string
+          example: password
+    guestreservation_body:
+      type: object
+      properties:
+        restaurant:
+          type: string
+          example: Bella Bella
+        date:
+          type: string
+          example: "{}"
+        time:
+          type: string
+          example: 11:00
+        guests:
+          type: string
+          example: "6"
+        mobile:
+          type: number
+          example: 938909874
+        requests:
+          type: number
+        status:
+          type: string
+          example: Processing
+    inline_response_201_2:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                example: "1234"
+              name:
+                type: string
+                example: Bella Bella
+            example:
+              name: Bella Bella
+              _id: "1234"
+        confirmation:
+          type: string
+          example: success
+        msg:
+          type: string
+          example: New reservation successfully stored
+      example:
+        msg: New reservation successfully stored
+        data:
+        - name: Bella Bella
+          _id: "1234"
+        - name: Bella Bella
+          _id: "1234"
+        confirmation: success
+    userId_reservations_body:
+      type: object
+      properties:
+        restaurant:
+          type: string
+          example: Bella Bella
+        date:
+          type: string
+          example: "{}"
+        time:
+          type: string
+          example: 11:00
+        guests:
+          type: string
+          example: "6"
+        mobile:
+          type: number
+          example: 938909874
+        requests:
+          type: number
+        status:
+          type: string
+          example: Processing
+    reservations_reservationId_body:
+      type: object
+      properties:
+        date:
+          type: string
+          example: "{}"
+        status:
+          type: string
+          example: Processing
+    inline_response_200_4:
+      type: object
+      properties:
+        confirmation:
+          type: string
+          example: success
+        msg:
+          type: string
+          example: reservation successfully
+      example:
+        msg: reservation successfully
+        confirmation: success

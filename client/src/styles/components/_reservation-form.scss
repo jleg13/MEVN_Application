@@ -2,3 +2,64 @@
 @import "../setup/_mixins.scss";
 @import "../setup/_variables.scss";
 @import "../setup/_responsive.scss";
+
+form {
+  @include boxLayout($pad: 1em 0, $bord-rad: 8px);
+  background-color: $primary-color;
+  color: $secondary-font-color;
+  h2 {
+    @include boxLayout($pad: 1em);
+    font-size: 24px;
+    line-height: 1.5;
+    text-indent: 1rem;
+    color: $secondary-color;
+  }
+  .form-section {
+    margin: 0 3em;
+    .input-bord {
+      margin: 1em;
+      border-bottom: 1px solid $secondary-font-color;
+      .form-control {
+        background-color: $primary-color;
+        color: $secondary-font-color;
+        border: none;
+        outline: none;
+        text-indent: 8px;
+        height: 40px;
+      }
+    }
+  }
+
+  .btn-primary {
+    @include boxLayout($marg: 35px 0 0 6em, $bord-rad: 4px);
+    box-shadow: none;
+    text-shadow: none;
+    max-width: 200px !important;
+    outline: none !important;
+    :hover,
+    :active {
+      background: #174179;
+    }
+    :active {
+      transform: translateY(1px);
+    }
+  }
+  label {
+    padding-left: 0.5em;
+    font-weight: bold;
+  }
+  .unselected {
+    background: rgb(20, 10, 10);
+  }
+  .form-select {
+    padding: 10px 20px 10px 40px;
+  }
+}
+.errors {
+  background: rgba(255, 255, 255, 0.4);
+  @include boxLayout($marg:1em 0 0 0, $pad: 1em 0 0.5em 0, $bord-rad: 5px);
+  @include flexLayout();
+  li {
+    color: $highlight-color;
+  }
+}

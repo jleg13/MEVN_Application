@@ -6,7 +6,7 @@
     <div class="inner-form">
       <div class="input-field first-wrap">
         <div class="icon-wrap">
-          <font-awesome-icon :icon="['fa', 'search']" />
+          <i class="fa fa-search"></i>
         </div>
         <input
           class="form-control form-in"
@@ -17,13 +17,13 @@
       </div>
       <div class="input-field second-wrap">
         <div class="icon-wrap">
-          <!-- <font-awesome-icon :icon="['fa', 'calendar-alt']" /> -->
+          <i class="fas fa-calendar-alt"></i>
         </div>
         <input id="datepicker" class="form-control form-in" type="date" />
       </div>
       <div class="input-field third-wrap">
         <div class="icon-wrap">
-          <font-awesome-icon :icon="['far', 'clock']" />
+          <i class="fas fa-clock"></i>
         </div>
         <input
           id="timepicker"
@@ -36,7 +36,7 @@
       </div>
       <div class="input-field fourth-wrap">
         <div class="icon-wrap">
-          <!-- <font-awesome-icon :icon="['fa', 'fa-user']" /> -->
+          <i class="fa fa-user"></i>
         </div>
         <select id="numpeople" class="form-select form-in">
           <optgroup label="Number of People">
@@ -50,23 +50,27 @@
         </select>
       </div>
       <div class="input-field fifth-wrap">
-        <UserBtn
-          btn-style="btn btn-primary btn-search"
-          btn-label="Go"
-          action=""
-          action-id=""
-        />
+        <router-link
+          @click="scrollToTop"
+          to="Restaurants"
+          id="submit-btn"
+          class="btn btn-primary btn-search"
+          role="button"
+          href="#"
+          >Go</router-link
+        >
       </div>
     </div>
   </form>
 </template>
 
 <script>
-import UserBtn from "./UserBtn.vue";
 export default {
   name: "SearchBar",
-  components: {
-    UserBtn,
+  methods: {
+    scrollToTop() {
+      window.scrollTo(0, 150);
+    },
   },
 };
 </script>
