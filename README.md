@@ -1,3 +1,5 @@
+# Restaurant Booking Application
+
 ## Project Description
 
 This complete full-stack application was the culmination of the Advanced Web Programming unit at UNE. Through the all the core skills for full stack development were explored including, refreshing knowledge of ES6+, the fundementals of the OSI model, DNS, HTTP, CORS, and webpack. Server-side we learnt how to build a node.js using the Express framework. Following the MVC architecture with integrated mogodb with Mongoose. On the client-side we explored the fundementals of both the React and Vue.js frameworks including Flux architecture. We developed the the skills to connect the client and server using the REST api and also Websockets and ServerSentEvents(SSE). Finally we also explore using web graphics such as d3.js and how to work with SVG's.
